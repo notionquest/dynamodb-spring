@@ -4,6 +4,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.examples.dynamodb.model.Movies;
+import com.examples.dynamodb.model.MoviesKt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +13,16 @@ import java.util.List;
 @Service
 public class MovieService {
 
-    /*@Autowired
-    private DynamoDBMapper dynamoDBMapper;*/
-
+    @Autowired
+    private DynamoDBMapper dynamoDBMapper;
 
     public List<Movies> getAllMovies() {
-        /*DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
-        return dynamoDBMapper.scan(Movies.class, scanExpression);*/
-        return null;
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        return dynamoDBMapper.scan(Movies.class, scanExpression);
+    }
+
+    public List<MoviesKt> getAllMoviesKt() {
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        return dynamoDBMapper.scan(MoviesKt.class, scanExpression);
     }
 }
